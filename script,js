@@ -1,0 +1,208 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const welcomeScreen = document.getElementById("welcome-screen");
+    const languageScreen = document.getElementById("language-screen");
+    const guideScreen = document.getElementById("character-screen");
+    const fourthScreen = document.getElementById("fourth-screen");
+    const screenFive = document.getElementById("screen-five"); // Reference for Screen 5
+
+    const startButton = document.querySelector(".start-button");
+    const languageButtons = document.querySelectorAll(".language-item");
+    const selectLanguageText = document.querySelector(".select-language-text");
+
+    let currentLanguage = "english";
+    let currentCharacterColor = "darkgreen"; 
+    let userName = ""; // Variable to store the user's name from Screen 4
+
+    // Language options
+    const languages = {
+        english: "Select your language",
+        spanish: "Selecciona tu idioma",
+        turkish: "Dilini seç",
+        german: "Wählen Sie Ihre Sprache",
+        dutch: "Selecteer je taal"
+    };
+
+    // Fourth Screen Translations
+    const fourthScreenTranslations = {
+        english: "What can I call you all?",
+        spanish: "¿Cómo puedo llamarte?",
+        turkish: "Size ne diyebilirim?",
+        german: "Wie kann ich dich nennen?",
+        dutch: "Hoe kan ik je noemen?"
+    };
+
+    // Next Button Translations
+    const nextButtonTranslations = {
+        english: "Next",
+        spanish: "Siguiente",
+        turkish: "İleri",
+        german: "Nächste",
+        dutch: "Volgende"
+    };
+
+    let currentLangIndex = 0;
+    const languageKeys = Object.keys(languages);
+
+    // Cycle languages
+    function cycleLanguage() {
+        currentLangIndex = (currentLangIndex + 1) % languageKeys.length;
+        const currentLangKey = languageKeys[currentLangIndex];
+        selectLanguageText.textContent = languages[currentLangKey];
+    }
+
+    // Cycle languages every 3 seconds
+    setInterval(cycleLanguage, 3000);
+
+    // Transition to Language Screen
+    startButton.addEventListener("click", () => {
+        welcomeScreen.classList.remove("active");
+        languageScreen.classList.add("active");
+    });
+
+    // Handle Language Selection
+    languageButtons.forEach(button => {
+        button.addEventListener("click", (e) => {
+            currentLanguage = e.target.id;
+
+            languageScreen.classList.remove("active");
+            guideScreen.classList.add("active");
+
+            // Set guide text based on selected language
+            const guideText = guideScreen.querySelector(".choose-guide-text");
+            guideText.textContent = {
+                english: "Choose your guide!",
+                spanish: "¡Elige tu guía!",
+                turkish: "Rehberini seç!",
+                german: "Wählen Sie Ihren Führer!",
+                dutch: "Kies je gids!"
+            }[currentLanguage];
+        });
+    });
+
+    // Character Selection Screen Functionality
+    const characterImages = [
+        "blue-monster",
+        "yellow-monster",
+        "goblin-monster",
+        "knight-monster",
+        "thumb-monster",
+        "santa-monster"
+    ];
+
+    let currentCharacterIndex = 0;
+    const characterDisplay = document.getElementById("current-character");
+    const leftArrow = document.querySelector(".left-arrow");
+    const rightArrow = document.querySelector(".right-arrow");
+    const doneButton = document.getElementById("done-button");
+    const backButton1 = document.getElementById("back-button-1");
+
+    function updateCharacter() {
+        characterDisplay.src = `${characterImages[currentCharacterIndex]}.png`;
+        characterDisplay.alt = characterImages[currentCharacterIndex].replace("-", " ");
+
+        const characterBannerText = document.getElementById("banner-text");
+        characterBannerText.textContent = fourthScreenTranslations[currentLanguage]; 
+
+        const banner = document.getElementById("character-banner");
+        switch (currentCharacterIndex) {
+            case 0:
+                currentCharacterColor = "blue";
+                break;
+            case 1:
+                currentCharacterColor = "yellow";
+                break;
+            case 2:
+                currentCharacterColor = "green";
+                break;
+            case 3:
+                currentCharacterColor = "purple";
+                break;
+            case 4:
+                currentCharacterColor = "orange";
+                break;
+            case 5:
+                currentCharacterColor = "red";
+                break;
+            default:
+                currentCharacterColor = "darkgreen"; 
+        }
+        banner.style.backgroundColor = currentCharacterColor; 
+
+        const leftMonsterImage = document.getElementById("character-left-image");
+        leftMonsterImage.src = `${characterImages[currentCharacterIndex]}.png`;
+        leftMonsterImage.style.position = 'absolute';
+        leftMonsterImage.style.top = '300px'; 
+        leftMonsterImage.style.left = "0"; 
+        leftMonsterImage.style.zIndex = '10'; 
+    }
+
+    leftArrow.addEventListener("click", () => {
+        currentCharacterIndex = (currentCharacterIndex - 1 + characterImages.length) % characterImages.length;
+        updateCharacter();
+    });
+
+    rightArrow.addEventListener("click", () => {
+        currentCharacterIndex = (currentCharacterIndex + 1) % characterImages.length;
+        updateCharacter();
+    });
+
+    // Back button functionality for character selection screen
+    backButton1.addEventListener("click", () => {
+        guideScreen.classList.remove("active");
+        languageScreen.classList.add("active");
+    });
+
+    doneButton.addEventListener("click", () => {
+        guideScreen.classList.remove("active");
+        fourthScreen.classList.add("active");
+        updateCharacter(); 
+    });
+
+    // Back button functionality for fourth screen
+    const backButton2 = document.getElementById("back-button-2");
+    backButton2.addEventListener("click", () => {
+        fourthScreen.classList.remove("active");
+        guideScreen.classList.add("active");
+    });
+
+    // Next Button Functionality
+    const nextButton = document.getElementById("next-button");
+    nextButton.addEventListener("click", () => {
+        fourthScreen.classList.remove("active");
+        screenFive.classList.add("active"); // Activate Screen 5
+        userName = document.getElementById("user-name").value; // Get user name from input in Screen 4
+        document.getElementById("screen-five-banner").textContent = `Hey ${userName}! I'll be your guide today, I'm here to help you uncover hidden details, explore fascinating facts about the artists, and dive deeper into their masterpieces.`; // Update banner text
+    });
+
+    // Add back button functionality (to return to the previous screen) for Screen 5
+    const backButton3 = document.createElement("button");
+    backButton3.textContent = "<"; // Set text for back button
+    backButton3.classList.add("back-button"); // Use existing styles
+    backButton3.style.position = "absolute"; // Positioning
+    backButton3.style.top = "1cm"; // Position from top
+    backButton3.style.left = "20px"; // Position from left
+
+    // Add event listener for back button on Screen 5
+    backButton3.addEventListener("click", () => {
+        screenFive.classList.remove("active"); // Hide Screen 5
+        fourthScreen.classList.add("active"); // Show Fourth Screen
+    });
+
+    // Append the back button to Screen 5 when it becomes active
+    screenFive.appendChild(backButton3);
+
+    // Update the name input placeholder to match the current language
+    const nameInput = document.getElementById("user-name");
+    nameInput.placeholder = {
+        english: "Enter your name",
+        spanish: "Introduce tu nombre",
+        turkish: "Adınızı girin",
+        german: "Gib deinen Namen ein",
+        dutch: "Voer je naam in"
+    }[currentLanguage];
+
+    // Set the "Next" button text based on chosen language
+    nextButton.textContent = nextButtonTranslations[currentLanguage];
+
+    updateCharacter(); 
+});

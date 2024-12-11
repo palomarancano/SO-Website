@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Remastered</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Top Black Band (Common) -->
+    <div class="top-band">
+        <img class="top-logo" src="remastered-logo.png" alt="Small Logo">
+    </div>
+
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="screen active">
+        <div class="container">
+            <p class="welcome-text">WELCOME TO</p>
+            <img id="logo" class="responsive-logo" src="remastered-logo.png" alt="Remastered Logo">
+            <img class="welcome-image" src="welcome-screen.jpg" alt="Welcome Screen Image">
+            <p class="description-text"> Remastered is an immersive audiovisual museum experience that brings together a new generation of Dutch artists.<br><br> You will journey through six unique rooms, hiding a world of wonders awaiting to be discovered. Guiding you along is one of Jeroen Bosch's legendary creatures, ready to make your adventure unforgettable.<br><br> What are you waiting for! Are you ready? </p>
+            <button id="start-button" class="start-button">Start</button>
+        </div>
+    </div>
+
+    <!-- Language Selection Screen -->
+    <div id="language-screen" class="screen">
+        <div class="container">
+            <p class="select-language-text">Select your language</p>
+            <div class="language-container">
+                <button class="language-item" id="turkish">Türkçe</button>
+                <button class="language-item" id="spanish">Español</button>
+                <button class="language-item" id="english">English</button>
+                <button class="language-item" id="german">Deutsch</button>
+                <button class="language-item" id="dutch">Nederlands</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Character Selection Screen -->
+    <div id="character-screen" class="screen">
+        <div class="top-controls">
+            <button class="back-button" id="back-button-1" style="top: calc(1.8cm + 5px); left: 20px; font-size: 30px;"><</button>
+        </div>
+        <p class="choose-guide-text" style="font-size: 28px; position: fixed; top: 110px;">Choose your guide!</p>
+        <div class="character-selector">
+            <button class="arrow-button left-arrow"><</button>
+            <img id="current-character" class="character-image" src="blue-monster.png" alt="Character">
+            <button class="arrow-button right-arrow">></button>
+        </div>
+        <button id="done-button" class="done-button">Done</button>
+    </div>
+
+    <!-- Fourth Screen -->
+    <div id="fourth-screen" class="screen">
+        <div class="top-controls">
+            <button class="back-button" id="back-button-2" style="top: calc(1.8cm + 5px); left: 20px; font-size: 30px;"><</button>
+        </div>
+        <div class="green-banner banner-thick" id="character-banner">
+            <span class="green-banner-text" id="banner-text">What can I call you all?</span>
+        </div>
+        <input type="text" id="user-name" class="name-input" placeholder="Enter your name" style="margin-top: 80px; width: 40%; position: absolute; right: 20px;" />
+        <button id="next-button" class="next-button">Next</button>
+        <img id="character-left-image" src="" alt="Character on left" class="left-monster-image tilted-image" style="margin-top: 0;"/>
+    </div>
+
+    <!-- Screen 5 -->
+    <div id="screen-five" class="screen">
+        <div class="top-band" id="screen-five-banner">
+            <img class="top-logo" src="remastered-logo.png" alt="Small Logo">
+            <div class="menu" id="menu-button" style="position: absolute; top: 10px; right: 10px; cursor: pointer; font-size: 30px;">☰</div>
+            <div class="menu-dropdown" id="menu-dropdown">
+                <ul>
+                    <li id="font-increase" class="font-button">Increase Font</li>
+                    <li id="font-decrease" class="font-button">Decrease Font</li>
+                    <li class="font-button">Artists</li>
+                    <li class="font-button">FAQs</li>
+                    <li class="font-button">Chatbot</li>
+                </ul>
+            </div>
+        </div>
+        <button class="back-button" id="back-button-3" style="top: calc(1.8cm + 5px); left: 20px; font-size: 30px; position: absolute;"><</button>
+
+        <!-- Character Color Banner -->
+        <div class="character-color-banner" id="character-color-banner" style="position: absolute; top: calc(1.8cm + 50px); left: 0; width: 100%; height: 70px; background-color: darkgreen; z-index: 2;"></div>
+
+        <!-- Character Image -->
+        <img id="character-image" src="" alt="Character" class="character-image" style="position: absolute; left: 20px; width: 40%; height: auto; z-index: 3;">
+
+        <!-- Greeting Text Container -->
+        <div class="greeting-container" style="position: absolute; top: calc(1.8cm + 50px); right: 5px; width: 55%; display: flex; justify-content: flex-end;">
+            <p id="greeting-text" class="greeting" style="margin: 0; padding: 5px 10px; z-index: 3;"></p> <!-- Adjusted padding -->
+        </div>
+
+        <!-- Photos Container -->
+        <div class="photos-container" style="position: absolute; top: calc(1.8cm + 110px); right: 20px; width: calc(100% - 40px);">
+            <button id="underworld-button" class="photo-button" style="background-image: url('underworld.png');"></button>
+            <button id="overworld-button" class="photo-button" style="background-image: url('overworld.png');"></button>
+            <button id="speculum-button" class="photo-button" style="background-image: url('speculum.png');"></button>
+            <button id="final-show-button" class="photo-button" style="background-image: url('final-show.png');"></button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
