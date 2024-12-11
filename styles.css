@@ -10,6 +10,7 @@ body {
     background-color: #333333;
     color: white;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -22,6 +23,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 /* Top Black Band (Common) */
@@ -40,8 +42,9 @@ body {
 }
 
 .top-logo {
-    height: 0.9cm;
+    height: auto;
     max-height: 100%;
+    width: auto;
 }
 
 /* Welcome Text */
