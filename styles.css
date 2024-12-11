@@ -388,3 +388,10 @@ body {
     height: 70px; /* Height for the banner */
     line-height: 70px; /* Center text vertically */
 }
+
+/* Underworld Image Styles */
+#underworld-screen img {
+    width: 100%;
+    max-height: 100vh;
+    object-fit:cover;
+}
