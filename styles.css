@@ -42,7 +42,7 @@ body {
 }
 
 .top-logo {
-    height: 2cm;
+    height: 0.9cm;
     max-height: 100%;
 }
 
@@ -61,7 +61,7 @@ body {
 
 /* Responsive Logo */
 .responsive-logo {
-    max-width: 50vw;
+    max-width: 50%;
     height: auto;
     margin-bottom: 20px;
 }
