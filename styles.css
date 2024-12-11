@@ -278,8 +278,8 @@ body {
 .photos-container {
     position: absolute;
     top: 300px; /* Position for more space between banner and images */
-    left: 40px; /* Align with the left margin */
-    right: 40px; /* Align with the right margin */
+    left: 20px; /* Align with the left margin */
+    right: 20px; /* Align with the right margin */
     display: flex;
     flex-direction: column; /* Ensure photos are in a column */
     gap: 20px; /* Increased space between each image */
@@ -288,7 +288,7 @@ body {
 /* Photo Button Styles */
 .photo-button {
     height: 130px; /* Fixed height for uniform appearance */
-    width: auto; /* Full width */
+    width: calc(80%); /* Full width */
     background-size: cover; /* Ensure background image fits button */
     background-position: center; /* Center background image */
     border: none; /* Remove border */
