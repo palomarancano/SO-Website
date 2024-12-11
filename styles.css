@@ -283,7 +283,6 @@ body {
     display: flex;
     flex-direction: column; /* Ensure photos are in a column */
     gap: 20px; /* Increased space between each image */
-    align-items: center;
 }
 
 /* Photo Button Styles */
