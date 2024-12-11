@@ -43,9 +43,8 @@ body {
 
 .top-logo {
     height: auto;
-    max-height: 100%;
-    width: auto;
     max-height: 0.9cm;
+    width: auto;
 }
 
 /* Welcome Text */
