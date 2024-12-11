@@ -236,7 +236,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     underworldButton.addEventListener("click", () => {
         screenFive.classList.remove("active");
-        // Add code to navigate to Underworld screen
+        document.getElementById("underworld-screen").classList.add("active");
+
+    const menuButtonUnderworld = document.getElementById("menu-button-underworld");
+    const menuDropdownUnderworld = document.getElementById("menu-dropdown-underworld");
+    const backButtonUnderworld = document.getElementById("back-button-underworld");
+
+    // Toggle Menu Visibility for Underworld Screen
+    menuButtonUnderworld.addEventListener("click", () => {
+        menuDropdownUnderworld.classList.toggle("active");
+    });
+
+    // Back Button Functionality for Underworld Screen
+    backButtonUnderworld.addEventListener("click", () => {
+        document.getElementById("underworld-screen").classList.remove("active"); // Hide Underworld
+        screenFive.classList.add("active"); // Return to Screen 5
+    });
     });
 
     overworldButton.addEventListener("click", () => {
@@ -254,5 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add code to navigate to Final Show screen
     });
 
-    updateCharacter(); // Ensure characters are updated on load
+    updateCharacter(); 
+    
 });
+
