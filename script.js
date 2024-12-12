@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuButton = document.getElementById("menu-button");
     const menuDropdown = document.getElementById("menu-dropdown");
 
-    let currentLanguage = "english"; 
-    let currentCharacterColor = "darkgreen"; // Default color 
-    let userName = ""; // Variable to store the user's name from Screen 4 
+    let currentLanguage = "english";
+    let currentCharacterColor = "darkgreen"; // Default color
+    let userName = ""; // Variable to store the user's name from Screen 4
     let fontSize = 16; // Default font size
     let currentCharacterImage = "blue-monster"; // Default character
 
@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
             dutch: "Volgende"
         }
     };
-
     // Transition to Language Screen
     startButton.addEventListener("click", () => {
         welcomeScreen.classList.remove("active");
@@ -107,10 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
         "santa-monster"
     ];
 
-    let currentCharacterIndex = 0; 
-    const characterDisplay = document.getElementById("current-character"); 
-    const leftArrow = document.querySelector(".left-arrow"); 
-    const rightArrow = document.querySelector(".right-arrow"); 
+    let currentCharacterIndex = 0;
+    const characterDisplay = document.getElementById("current-character");
+    const leftArrow = document.querySelector(".left-arrow");
+    const rightArrow = document.querySelector(".right-arrow");
     const doneButton = document.getElementById("done-button");
 
     function updateCharacter() {
@@ -123,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         characterBannerText.textContent = fourthScreenTranslations[currentLanguage];
 
         const banner = document.getElementById("character-banner");
-        switch (currentCharacterIndex) {
+       switch (currentCharacterIndex) {
             case 0: currentCharacterColor = "rgba(0, 0, 255, 0.8)"; break; // Blue
             case 1: currentCharacterColor = "rgba(255, 255, 0, 0.8)"; break; // Yellow
             case 2: currentCharacterColor = "rgba(0, 255, 0, 0.8)"; break; // Green
@@ -185,7 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const backButton3 = document.getElementById("back-button-3");
     backButton3.addEventListener("click", () => {
         screenFive.classList.remove("active");
-        fourthScreen.classList.add("active");
     });
 
     // Next Button Functionality on Fourth Screen
@@ -196,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
         screenFive.classList.add("active");
 
         const greetingTextElement = document.getElementById("greeting-text");
-        
+
         // Update the image src for Screen 5 to reflect the selected character
         const characterImageElement = document.getElementById("character-image");
         characterImageElement.src = `${currentCharacterImage}.png`; // Display the selected character
@@ -211,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Font Size Adjustment
-    const fontIncreaseButton = document.getElementById("font-increase"); 
+    const fontIncreaseButton = document.getElementById("font-increase");
     const fontDecreaseButton = document.getElementById("font-decrease");
 
     menuButton.addEventListener("click", () => {
@@ -228,48 +226,118 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.fontSize = `${fontSize}px`; // Fixed: Used backticks for string interpolation
     });
 
-    // Add event listeners to photo buttons 
+    // Add event listeners to photo buttons
     const underworldButton = document.getElementById("underworld-button");
     const overworldButton = document.getElementById("overworld-button");
     const speculumButton = document.getElementById("speculum-button");
     const finalShowButton = document.getElementById("final-show-button");
 
+    const photoButtons = document.querySelectorAll('.photo-button');
+    photoButtons.forEach(button => {
+       button.style.width = '100%';
+       button.style.margin = '10px 0';
+});
+
+    // Underworld Screen
     underworldButton.addEventListener("click", () => {
         screenFive.classList.remove("active");
         document.getElementById("underworld-screen").classList.add("active");
 
     const menuButtonUnderworld = document.getElementById("menu-button-underworld");
     const menuDropdownUnderworld = document.getElementById("menu-dropdown-underworld");
-    const backButtonUnderworld = document.getElementById("back-button-underworld");
 
-    // Toggle Menu Visibility for Underworld Screen
     menuButtonUnderworld.addEventListener("click", () => {
         menuDropdownUnderworld.classList.toggle("active");
     });
 
-    // Back Button Functionality for Underworld Screen
+    const backButtonUnderworld = document.createElement("button");
+    backButtonUnderworld.innerHTML = "<";
+    backButtonUnderworld.classList.add("back-button");
+    backButtonUnderworld.style.cssText = "position: absolute; top:calc(2.2cm + 3cm); left: 20px; font-size: 30px;";
+    document.getElementById("underworld-screen").insertBefore(backButtonUnderworld, document.getElementById("underworld-screen").firstChild);
+
     backButtonUnderworld.addEventListener("click", () => {
         document.getElementById("underworld-screen").classList.remove("active"); // Hide Underworld
         screenFive.classList.add("active"); // Return to Screen 5
-    });
-    });
 
+    });
+});
+
+// Overworld screen
     overworldButton.addEventListener("click", () => {
         screenFive.classList.remove("active");
-        // Add code to navigate to Overworld screen
+        const overworldScreen = document.getElementById("overworld-screen");
+        overworldScreen.classList.add("active");
+        
+        const menuButtonOverworld = document.getElementById("menu-button-underworld");
+        const menuDropdownOverworld = document.getElementById("menu-dropdown-underworld");
+
+        menuButtonOverworld.addEventListener("click", () => {
+            menuDropdownOverworld.classList.toggle("active");
+        });
+
+        const backButtonOverworld = document.createElement("button");
+        backButtonOverworld.innerHTML = "<";
+        backButtonOverworld.classList.add("back-button");
+        backButtonOverworld.style.cssText = "position: absolute; top: calc(1.8cm + 5px); left: 20px; font-size: 30px;";
+        overworldScreen.insertBefore(backButtonOverworld, overworldScreen.firstChild);
+
+        backButtonOverworld.addEventListener("click", () => {
+            overworldScreen.classList.remove("active");
+            screenFive.classList.add("active");
+        });
     });
 
+
+
+// Speculum screen
     speculumButton.addEventListener("click", () => {
         screenFive.classList.remove("active");
-        // Add code to navigate to Speculum screen
-    });
+        const speculumScreen = document.getElementById("speculum-screen");
+        speculumScreen.classList.add("active");
 
-    finalShowButton.addEventListener("click", () => {
-        screenFive.classList.remove("active");
-        // Add code to navigate to Final Show screen
-    });
+        const menuButtonSpeculum = document.getElementById("menu-button-speculum");
+        const menuDropdownSpeculum = document.getElementById("menu-dropdown-speculum");
 
-    updateCharacter(); 
+        menuButtonSpeculum.addEventListener("click", () => {
+            menuDropdownSpeculum.classList.toggle("active");
+        });
+        const backSpeculum = document.createElement("button");
+        backButtonSpeculum.innerHTML = "<";
+        backButtonSpeculum.classList.add("back-button");
+        backButtonSpeculum.style.cssText = "position: absolute; top: calc(1.8cm + 5px); left: 20px; font-size: 30px;";
+        speculumScreen.insertBefore(backButtonSpeculum, speculumdScreen.firstChild);
+
+        backButtonSpeculum.addEventListener("click", () => {
+            overworldScreen.classList.remove("active");
+            screenFive.classList.add("active");
+        });
     
 });
 
+//Final show screen
+    finalShowButton.addEventListener("click", () => {
+        screenFive.classList.remove("active");
+         document.getElementById("final-show-screen").classList.add("active");
+        const menuButtonFinalShow = document.getElementById("menu-button-underworld");
+        const menuDropdownFinalShow = document.getElementById("menu-dropdown-underworld");
+
+        menuButtonFinalShow.addEventListener("click", () => {
+            menuDropdownFinalShow.classList.toggle("active");
+        });
+
+        const backButtonFinalShow = document.createElement("button");
+        backButtonFinalShow.innerHTML = "<";
+        backButtonFinalShow.classList.add("back-button");
+        backButtonFinalShow.style.cssText = "position: absolute; top: calc(1.8cm + 5px); left: 20px; font-size: 30px;";
+        finalShowScreen.insertBefore(backButtonFinalShow, finalShowScreen.firstChild);
+
+        backButtonFinalShow.addEventListener("click", () => {
+            finalShowScreen.classList.remove("active");
+            screenFive.classList.add("active");
+        });
+    });
+ 
+
+    updateCharacter();
+});
