@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dutch: "Volgende"
         }
     };
+
     // Transition to Language Screen
     startButton.addEventListener("click", () => {
         welcomeScreen.classList.remove("active");
@@ -122,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         characterBannerText.textContent = fourthScreenTranslations[currentLanguage];
 
         const banner = document.getElementById("character-banner");
-       switch (currentCharacterIndex) {
+        switch (currentCharacterIndex) {
             case 0: currentCharacterColor = "rgba(0, 0, 255, 0.8)"; break; // Blue
             case 1: currentCharacterColor = "rgba(255, 255, 0, 0.8)"; break; // Yellow
             case 2: currentCharacterColor = "rgba(0, 255, 0, 0.8)"; break; // Green
@@ -236,61 +237,75 @@ document.addEventListener('DOMContentLoaded', () => {
     photoButtons.forEach(button => {
        button.style.width = '100%';
        button.style.margin = '10px 0';
-});
+    });
 
     // Underworld Screen
     underworldButton.addEventListener("click", () => {
         screenFive.classList.remove("active");
-        document.getElementById("underworld-screen").classList.add("active");
+        const underworldScreen = document.getElementById("underworld-screen");
+        underworldScreen.classList.add("active");
 
-    const menuButtonUnderworld = document.getElementById("menu-button-underworld");
-    const menuDropdownUnderworld = document.getElementById("menu-dropdown-underworld");
+        const menuButtonUnderworld = document.getElementById("menu-button-underworld");
+        const menuDropdownUnderworld = document.getElementById("menu-dropdown-underworld");
 
-    menuButtonUnderworld.addEventListener("click", () => {
-        menuDropdownUnderworld.classList.toggle("active");
+        if (menuButtonUnderworld) {
+            menuButtonUnderworld.addEventListener("click", () => {
+                menuDropdownUnderworld.classList.toggle("active");
+            });
+
+            const backButtonUnderworld = document.createElement("button");
+            backButtonUnderworld.innerHTML = "<";
+            backButtonUnderworld.classList.add("back-button");
+            backButtonUnderworld.style.cssText = `
+                position: absolute;
+                top: calc(1.8cm + 3cm);
+                left: 20px;
+                font-size: 30px;
+                z-index: 1;
+              `;
+            underworldScreen.insertBefore(backButtonUnderworld, underworldScreen.firstChild);
+
+            backButtonUnderworld.addEventListener("click", () => {
+                underworldScreen.classList.remove("active"); // Hide Underworld
+                screenFive.classList.add("active"); // Return to Screen 5
+            });
+        }
     });
 
-    const backButtonUnderworld = document.createElement("button");
-    backButtonUnderworld.innerHTML = "<";
-    backButtonUnderworld.classList.add("back-button");
-    backButtonUnderworld.style.cssText = "position: absolute; top:calc(2.2cm + 3cm); left: 20px; font-size: 30px;";
-    document.getElementById("underworld-screen").insertBefore(backButtonUnderworld, document.getElementById("underworld-screen").firstChild);
-
-    backButtonUnderworld.addEventListener("click", () => {
-        document.getElementById("underworld-screen").classList.remove("active"); // Hide Underworld
-        screenFive.classList.add("active"); // Return to Screen 5
-
-    });
-});
-
-// Overworld screen
+    // Overworld screen
     overworldButton.addEventListener("click", () => {
         screenFive.classList.remove("active");
         const overworldScreen = document.getElementById("overworld-screen");
         overworldScreen.classList.add("active");
-        
-        const menuButtonOverworld = document.getElementById("menu-button-underworld");
-        const menuDropdownOverworld = document.getElementById("menu-dropdown-underworld");
 
-        menuButtonOverworld.addEventListener("click", () => {
-            menuDropdownOverworld.classList.toggle("active");
-        });
+        const menuButtonOverworld = document.getElementById("menu-button-overworld");
+        const menuDropdownOverworld = document.getElementById("menu-dropdown-overworld");
 
-        const backButtonOverworld = document.createElement("button");
-        backButtonOverworld.innerHTML = "<";
-        backButtonOverworld.classList.add("back-button");
-        backButtonOverworld.style.cssText = "position: absolute; top: calc(1.8cm + 5px); left: 20px; font-size: 30px;";
-        overworldScreen.insertBefore(backButtonOverworld, overworldScreen.firstChild);
+        if (menuButtonOverworld) {
+            menuButtonOverworld.addEventListener("click", () => {
+                menuDropdownOverworld.classList.toggle("active");
+            });
 
-        backButtonOverworld.addEventListener("click", () => {
-            overworldScreen.classList.remove("active");
-            screenFive.classList.add("active");
-        });
+            const backButtonOverworld = document.createElement("button");
+            backButtonOverworld.innerHTML = "<";
+            backButtonOverworld.classList.add("back-button");
+            backButtonOverworld.style.cssText = `
+              position: absolute;
+              top: calc(1.8cm + 3cm);
+              left: 20px;
+              font-size: 30px;
+              z-index: 1;
+            `;
+            overworldScreen.insertBefore(backButtonOverworld, overworldScreen.firstChild);
+
+            backButtonOverworld.addEventListener("click", () => {
+                overworldScreen.classList.remove("active");
+                screenFive.classList.add("active");
+            });
+        }
     });
 
-
-
-// Speculum screen
+    // Speculum screen
     speculumButton.addEventListener("click", () => {
         screenFive.classList.remove("active");
         const speculumScreen = document.getElementById("speculum-screen");
@@ -299,45 +314,62 @@ document.addEventListener('DOMContentLoaded', () => {
         const menuButtonSpeculum = document.getElementById("menu-button-speculum");
         const menuDropdownSpeculum = document.getElementById("menu-dropdown-speculum");
 
-        menuButtonSpeculum.addEventListener("click", () => {
-            menuDropdownSpeculum.classList.toggle("active");
-        });
-        const backSpeculum = document.createElement("button");
-        backButtonSpeculum.innerHTML = "<";
-        backButtonSpeculum.classList.add("back-button");
-        backButtonSpeculum.style.cssText = "position: absolute; top: calc(1.8cm + 5px); left: 20px; font-size: 30px;";
-        speculumScreen.insertBefore(backButtonSpeculum, speculumdScreen.firstChild);
+        if (menuButtonSpeculum) {
+            menuButtonSpeculum.addEventListener("click", () => {
+                menuDropdownSpeculum.classList.toggle("active");
+            });
 
-        backButtonSpeculum.addEventListener("click", () => {
-            overworldScreen.classList.remove("active");
-            screenFive.classList.add("active");
-        });
-    
-});
+            const backButtonSpeculum = document.createElement("button");
+            backButtonSpeculum.innerHTML = "<";
+            backButtonSpeculum.classList.add("back-button");
+            backButtonSpeculum.style.cssText = `
+              position: absolute;
+              top: calc(1.8cm + 3cm);
+              left: 20px;
+              font-size: 30px;
+              z-index: 1;
+            `;
 
-//Final show screen
+            speculumScreen.insertBefore(backButtonSpeculum, speculumScreen.firstChild);
+
+            backButtonSpeculum.addEventListener("click", () => {
+                speculumScreen.classList.remove("active");
+                screenFive.classList.add("active");
+            });
+        }
+    });
+
+    // Final show screen
     finalShowButton.addEventListener("click", () => {
         screenFive.classList.remove("active");
-         document.getElementById("final-show-screen").classList.add("active");
-        const menuButtonFinalShow = document.getElementById("menu-button-underworld");
-        const menuDropdownFinalShow = document.getElementById("menu-dropdown-underworld");
+        const finalShowScreen = document.getElementById("final-show-screen"); 
+        finalShowScreen.classList.add("active");
 
-        menuButtonFinalShow.addEventListener("click", () => {
-            menuDropdownFinalShow.classList.toggle("active");
-        });
+        const menuButtonFinalShow = document.getElementById("menu-button-final-show");
+        const menuDropdownFinalShow = document.getElementById("menu-dropdown-final-show");
 
-        const backButtonFinalShow = document.createElement("button");
-        backButtonFinalShow.innerHTML = "<";
-        backButtonFinalShow.classList.add("back-button");
-        backButtonFinalShow.style.cssText = "position: absolute; top: calc(1.8cm + 5px); left: 20px; font-size: 30px;";
-        finalShowScreen.insertBefore(backButtonFinalShow, finalShowScreen.firstChild);
+        if (menuButtonFinalShow) {
+            menuButtonFinalShow.addEventListener("click", () => {
+                menuDropdownFinalShow.classList.toggle("active");
+            });
 
-        backButtonFinalShow.addEventListener("click", () => {
-            finalShowScreen.classList.remove("active");
-            screenFive.classList.add("active");
-        });
+            const backButtonFinalShow = document.createElement("button");
+            backButtonFinalShow.innerHTML = "<";
+            backButtonFinalShow.classList.add("back-button");
+            backButtonFinalShow.style.cssText = `
+              position: absolute;
+              top: calc(1.8cm + 3cm);
+              left: 20px;
+              font-size: 30px;
+              z-index: 1;
+            `;
+
+            finalShowScreen.insertBefore(backButtonFinalShow, finalShowScreen.firstChild);
+
+            backButtonFinalShow.addEventListener("click", () => {
+                finalShowScreen.classList.remove("active");
+                screenFive.classList.add("active");
+            });
+        }
     });
- 
-
-    updateCharacter();
 });

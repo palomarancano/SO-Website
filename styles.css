@@ -41,9 +41,17 @@ body {
     z-index: 1000;
 }
 
+#top-band {
+    height: 1.5cm;
+}
+
 .top-logo {
     height: 0.9cm; /* Changed to the desired logo height */
     max-height: 100%;
+}
+
+#top-logo {
+    height: 0.9cm;
 }
 
 /* Welcome Text */
@@ -327,7 +335,7 @@ body {
     left: 0;
     right: 0; /* Make sure it spans the full width */
     background-color: darkgreen;
-    height: 100px;
+    height: 110px;
     z-index: 2;
     display: flex; /* Flexbox for centering the text */
     align-items: center; /* Center items vertically */
@@ -396,5 +404,12 @@ body {
     object-fit:cover;
     margin-top: 2cm;
     top: calc(1.5cm + 3cm)
+}
+
+#top-banner {
+height: 0.9cm;
+background-color: #00;
+padding: 10px;
+text-align: center;
 }
 
